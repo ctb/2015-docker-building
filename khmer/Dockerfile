@@ -21,4 +21,3 @@ RUN cd /home && \
     cd khmer && \
     python setup.py install && \
     rm -fr build
-
