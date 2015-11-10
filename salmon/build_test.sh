@@ -1,2 +1,2 @@
 #! /bin/bash
-docker build -t diblab/salmon:0.5.0 .
+docker build --rm=false --force-rm=false -t diblab/salmon:0.5.0 .

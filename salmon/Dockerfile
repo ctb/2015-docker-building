@@ -2,7 +2,7 @@ FROM ubuntu:15.10
 MAINTAINER titus@idyll.org
 
 ENV PACKAGES git gcc make g++ cmake libboost-all-dev liblzma-dev ca-certificates \
-    zlib1g
+    zlib1g-dev
 ENV SALMON_VERSION v0.5.0
 
 # salmon code will be installed in /usr/local/bin
@@ -14,6 +14,8 @@ WORKDIR /home
 RUN apt-get update && \
     apt-get install -y --no-install-recommends ${PACKAGES} && \
     apt-get clean
+
+RUN apt-get install -y curl unzip autoconf
 
 RUN git clone https://github.com/COMBINE-lab/salmon.git -b ${SALMON_VERSION} && \
     cd salmon && \
