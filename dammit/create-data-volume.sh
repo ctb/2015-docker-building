@@ -1,18 +1,17 @@
+#! /bin/bash
 ### this creates a docker-land volume that can be shared among running
 ### docker containers.
 
-# this is useful for docker-machine
+# create a docker volume to be shared under the name 'dammit-db'
 docker create -v /dammit-db --name dammit-db ubuntu:15.10 /bin/true
 
-docker run --volumes-from dammit-db -it ubuntu:15.10 bash
+# load it up with the right databases; this will take a few minutes to download
+# and unpack. See dammit-db-helper/Dockerfile for more info.
+docker run --volumes-from dammit-db -it diblab/dammit-db-helper
 
-### alternatively, you could do:
+# finally, run dammit, with the data volume attached:
+docker run --volumes-from dammit-db:ro diblab/dammit:0.0.6 dammit dependencies
 
-# this is useful for locally running docker
-docker run -v /some/local/directory:/dammit-db ....
-
-### big file located here:
-
-# curl -L http://public.ged.msu.edu.s3.amazonaws.com/dammit-db-2015-11-10.tar.gz |
-#     tar -xvzf -
-
+# this last command can be run as many times as desired without re-downloading
+# the data; in fact, all of the commands can be run, but the first two
+# won't do anything after the first time.

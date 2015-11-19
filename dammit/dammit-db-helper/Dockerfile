@@ -3,4 +3,4 @@ FROM diblab/kp-base
 MAINTAINER titus@idyll.org
 
 COPY download-db.sh /home/download-db.sh
-ENTRYPOINT ['/home/download-db.sh']
+CMD ["/home/download-db.sh"]
