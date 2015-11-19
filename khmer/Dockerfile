@@ -1,3 +1,4 @@
+# image: diblab/khmer
 FROM ubuntu:15.10
 MAINTAINER titus@idyll.org
 
