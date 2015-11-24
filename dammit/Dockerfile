@@ -5,8 +5,8 @@ MAINTAINER titus@idyll.org
 ENV PACKAGES git gcc make g++ cmake libboost-all-dev liblzma-dev \
     ca-certificates zlib1g-dev curl unzip autoconf python-pip python-dev \
     python-numpy git ruby liburi-escape-xs-perl emboss liburi-perl unzip \
-    python-pandas hmmer infernal ncbi-blast+ python-matplotlib python-sklearn \
-    python-tk
+    hmmer infernal ncbi-blast+ python-matplotlib python-sklearn \
+    python-tk python3
 
 ENV TRANSDECODER_VERSION 2.0.1
 ENV LAST_VERSION 658
@@ -37,5 +37,5 @@ RUN curl -O -L http://busco.ezlab.org/files/BUSCO_v${BUSCO_VERSION}.tar.gz && \
 
 ENV PATH ${PATH}:/home/TransDecoder-${TRANSDECODER_VERSION}:/home/BUSCO_v${BUSCO_VERSION}
 
-RUN pip install -U setuptools
+RUN pip install -U setuptools pandas
 RUN pip install ficus dammit==${DAMMIT_VERSION}
