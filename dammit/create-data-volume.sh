@@ -7,10 +7,11 @@ docker create -v /dammit-db --name dammit-db ubuntu:15.10 /bin/true
 
 # load it up with the right databases; this will take a few minutes to download
 # and unpack. See dammit-db-helper/Dockerfile for more info.
-docker run --volumes-from dammit-db -it diblab/dammit-db-helper
+docker run --rm --volumes-from dammit-db -it diblab/dammit-db-helper
 
 # finally, run dammit, with the data volume attached:
-docker run --volumes-from dammit-db:ro diblab/dammit:0.0.8 dammit databases --database-dir=/dammit-db
+docker run --rm --volumes-from dammit-db:ro diblab/dammit:0.0.10 dammit databases
+# or annotate, etc.
 
 # this last command can be run as many times as desired without re-downloading
 # the data; in fact, all of the commands can be run, but the first two
