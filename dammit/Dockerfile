@@ -11,7 +11,7 @@ ENV PACKAGES git gcc make g++ cmake libboost-all-dev liblzma-dev \
 ENV TRANSDECODER_VERSION 2.0.1
 ENV LAST_VERSION 658
 ENV BUSCO_VERSION 1.1b1
-ENV DAMMIT_VERSION 0.0.10
+ENV DAMMIT_VERSION 0.2.0
 
 ### don't modify things below here for version updates etc.
 
@@ -38,6 +38,6 @@ RUN curl -O -L http://busco.ezlab.org/files/BUSCO_v${BUSCO_VERSION}.tar.gz && \
 ENV PATH ${PATH}:/home/TransDecoder-${TRANSDECODER_VERSION}:/home/BUSCO_v${BUSCO_VERSION}
 
 RUN pip install -U setuptools pandas
-RUN pip install ficus dammit==${DAMMIT_VERSION}
+RUN pip install ficus dammit==${DAMMIT_VERSION} numexpr
 
 ENV DAMMIT_DB_DIR /dammit-db
